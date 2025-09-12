@@ -1,0 +1,1146 @@
+{
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "Glog.AI",
+          "organization": "Glog.AI",
+          "fullName": "Glog, Making software more secure",
+          "version": "1.0.0",
+          "semanticVersion": "1.0.0",
+          "informationUri": "https://www.glog.ai",
+          "rules": [
+            {
+              "id": "glog-de65e1f0-d959-4b02-b3b1-04fd7595bcbd",
+              "help": {
+                "text": "",
+                "markdown": "### Description\n\nThe \"Detected Issue with C Function (malloc)\" vulnerability in C++ typically arises from improper use of the `malloc` function, which is used to allocate memory dynamically. The specific vulnerability in the code snippet `malloc(range * sizeof(uint8_t))` can occur if the `range` variable is not properly validated. This can lead to several issues, such as integer overflow, buffer overflow, or memory allocation failures, which can be exploited to cause a denial of service or execute arbitrary code.\n\n### General Mitigation Advice\n\n1. **Input Validation**: Always validate input values to ensure they are within expected bounds before using them in memory allocation functions.\n2. **Check for Integer Overflow**: Ensure that the multiplication `range * sizeof(uint8_t)` does not result in an integer overflow.\n3. **Check Return Value**: Always check the return value of `malloc` to ensure that memory allocation was successful.\n4. **Use Safer Alternatives**: Consider using safer alternatives like `calloc`, which initializes the allocated memory to zero, or C++ constructs like `std::vector` that handle memory management automatically.\n\n### Source Code Fix Recommendation\n\n```cpp\n#include <cstdint>\n#include <cstdlib>\n#include <iostream>\n\n// Example function demonstrating safe memory allocation\nvoid allocateMemory(size_t range) {\n    // Check for potential overflow\n    if (range > SIZE_MAX / sizeof(uint8_t)) {\n        std::cerr << \"Error: Range is too large, potential overflow detected.\" << std::endl;\n        return;\n    }\n\n    // Allocate memory safely\n    uint8_t* buffer = static_cast<uint8_t*>(malloc(range * sizeof(uint8_t)));\n    if (buffer == nullptr) {\n        std::cerr << \"Error: Memory allocation failed.\" << std::endl;\n        return;\n    }\n\n    // Use the allocated memory\n    // ...\n\n    // Free the allocated memory\n    free(buffer);\n}\n\nint main() {\n    size_t range = 100; // Example range value\n    allocateMemory(range);\n    return 0;\n}\n```\n\n### Library Dependencies\n\n- `<cstdint>`: For fixed-width integer types like `uint8_t`.\n- `<cstdlib>`: For `malloc` and `free` functions.\n- `<iostream>`: For input and output operations.\n\n### Relevant OWASP Resources\n\n- [OWASP Top Ten](https://owasp.org/www-project-top-ten/)\n- [OWASP Secure Coding Practices](https://owasp.org/www-project-secure-coding-practices-quick-reference-guide/)\n\n### Common Weakness Enumeration (CWE)\n\n- [CWE-190: Integer Overflow or Wraparound](https://cwe.mitre.org/data/definitions/190.html)\n- [CWE-401: Missing Release of Memory after Effective Lifetime](https://cwe.mitre.org/data/definitions/401.html)"
+              },
+              "properties": {
+                "tags": [
+                  "DS161085"
+                ]
+              }
+            },
+            {
+              "id": "glog-35bd9551-5ddd-40ae-afc4-cc48b115181c",
+              "help": {
+                "text": "",
+                "markdown": "### Description\n\nThe \"Detected Issue with C Function (malloc)\" vulnerability in C++ typically arises from improper use of the `malloc` function, which is used to allocate memory dynamically. The specific vulnerability in the code snippet `malloc(range * sizeof(uint8_t))` can occur if the `range` variable is not properly validated. This can lead to several issues, such as integer overflow, buffer overflow, or memory allocation failures, which can be exploited to cause a denial of service or execute arbitrary code.\n\n### General Mitigation Advice\n\n1. **Input Validation**: Always validate input values to ensure they are within expected bounds before using them in memory allocation functions.\n2. **Check for Integer Overflow**: Ensure that the multiplication `range * sizeof(uint8_t)` does not result in an integer overflow.\n3. **Check Return Value**: Always check the return value of `malloc` to ensure that memory allocation was successful.\n4. **Use Safer Alternatives**: Consider using safer alternatives like `calloc`, which initializes the allocated memory to zero, or C++ constructs like `std::vector` that handle memory management automatically.\n\n### Source Code Fix Recommendation\n\n```cpp\n#include <cstdint>\n#include <cstdlib>\n#include <iostream>\n\n// Example function demonstrating safe memory allocation\nvoid allocateMemory(size_t range) {\n    // Check for potential overflow\n    if (range > SIZE_MAX / sizeof(uint8_t)) {\n        std::cerr << \"Error: Range is too large, potential overflow detected.\" << std::endl;\n        return;\n    }\n\n    // Allocate memory safely\n    uint8_t* buffer = static_cast<uint8_t*>(malloc(range * sizeof(uint8_t)));\n    if (buffer == nullptr) {\n        std::cerr << \"Error: Memory allocation failed.\" << std::endl;\n        return;\n    }\n\n    // Use the allocated memory\n    // ...\n\n    // Free the allocated memory\n    free(buffer);\n}\n\nint main() {\n    size_t range = 100; // Example range value\n    allocateMemory(range);\n    return 0;\n}\n```\n\n### Library Dependencies\n\n- `<cstdint>`: For fixed-width integer types like `uint8_t`.\n- `<cstdlib>`: For `malloc` and `free` functions.\n- `<iostream>`: For input and output operations.\n\n### Relevant OWASP Resources\n\n- [OWASP Top Ten](https://owasp.org/www-project-top-ten/)\n- [OWASP Secure Coding Practices](https://owasp.org/www-project-secure-coding-practices-quick-reference-guide/)\n\n### Common Weakness Enumeration (CWE)\n\n- [CWE-190: Integer Overflow or Wraparound](https://cwe.mitre.org/data/definitions/190.html)\n- [CWE-401: Missing Release of Memory after Effective Lifetime](https://cwe.mitre.org/data/definitions/401.html)"
+              },
+              "properties": {
+                "tags": [
+                  "DS161085"
+                ]
+              }
+            },
+            {
+              "id": "glog-be8a5c08-911d-43ea-8e79-4e9bf821ea7c",
+              "help": {
+                "text": "",
+                "markdown": "### Description\n\nThe \"Detected Issue with C Function (malloc)\" vulnerability in C++ typically arises from improper use of the `malloc` function, which is used to allocate memory dynamically. The specific vulnerability in the code snippet `malloc(range * sizeof(uint8_t))` can occur if the `range` variable is not properly validated. This can lead to several issues, such as integer overflow, buffer overflow, or memory allocation failures, which can be exploited to cause a denial of service or execute arbitrary code.\n\n### General Mitigation Advice\n\n1. **Input Validation**: Always validate input values to ensure they are within expected bounds before using them in memory allocation functions.\n2. **Check for Integer Overflow**: Ensure that the multiplication `range * sizeof(uint8_t)` does not result in an integer overflow.\n3. **Check Return Value**: Always check the return value of `malloc` to ensure that memory allocation was successful.\n4. **Use Safer Alternatives**: Consider using safer alternatives like `calloc`, which initializes the allocated memory to zero, or C++ constructs like `std::vector` that handle memory management automatically.\n\n### Source Code Fix Recommendation\n\n```cpp\n#include <cstdint>\n#include <cstdlib>\n#include <iostream>\n\n// Example function demonstrating safe memory allocation\nvoid allocateMemory(size_t range) {\n    // Check for potential overflow\n    if (range > SIZE_MAX / sizeof(uint8_t)) {\n        std::cerr << \"Error: Range is too large, potential overflow detected.\" << std::endl;\n        return;\n    }\n\n    // Allocate memory safely\n    uint8_t* buffer = static_cast<uint8_t*>(malloc(range * sizeof(uint8_t)));\n    if (buffer == nullptr) {\n        std::cerr << \"Error: Memory allocation failed.\" << std::endl;\n        return;\n    }\n\n    // Use the allocated memory\n    // ...\n\n    // Free the allocated memory\n    free(buffer);\n}\n\nint main() {\n    size_t range = 100; // Example range value\n    allocateMemory(range);\n    return 0;\n}\n```\n\n### Library Dependencies\n\n- `<cstdint>`: For fixed-width integer types like `uint8_t`.\n- `<cstdlib>`: For `malloc` and `free` functions.\n- `<iostream>`: For input and output operations.\n\n### Relevant OWASP Resources\n\n- [OWASP Top Ten](https://owasp.org/www-project-top-ten/)\n- [OWASP Secure Coding Practices](https://owasp.org/www-project-secure-coding-practices-quick-reference-guide/)\n\n### Common Weakness Enumeration (CWE)\n\n- [CWE-190: Integer Overflow or Wraparound](https://cwe.mitre.org/data/definitions/190.html)\n- [CWE-401: Missing Release of Memory after Effective Lifetime](https://cwe.mitre.org/data/definitions/401.html)"
+              },
+              "properties": {
+                "tags": [
+                  "DS161085"
+                ]
+              }
+            },
+            {
+              "id": "glog-b7a64ecc-9279-40ad-9868-c1f02c9e0e6e",
+              "help": {
+                "text": "",
+                "markdown": "### Description\n\nThe \"Detected Issue with C Function (malloc)\" vulnerability in C++ typically arises from improper use of the `malloc` function, which is used to allocate memory dynamically. The specific vulnerability in the code snippet `malloc(range * sizeof(uint8_t))` can occur if the `range` variable is not properly validated. This can lead to several issues, such as integer overflow, buffer overflow, or memory allocation failures, which can be exploited to cause a denial of service or execute arbitrary code.\n\n### General Mitigation Advice\n\n1. **Input Validation**: Always validate input values to ensure they are within expected bounds before using them in memory allocation functions.\n2. **Check for Integer Overflow**: Ensure that the multiplication `range * sizeof(uint8_t)` does not result in an integer overflow.\n3. **Check Return Value**: Always check the return value of `malloc` to ensure that memory allocation was successful.\n4. **Use Safer Alternatives**: Consider using safer alternatives like `calloc`, which initializes the allocated memory to zero, or C++ constructs like `std::vector` that handle memory management automatically.\n\n### Source Code Fix Recommendation\n\n```cpp\n#include <cstdint>\n#include <cstdlib>\n#include <iostream>\n\n// Example function demonstrating safe memory allocation\nvoid allocateMemory(size_t range) {\n    // Check for potential overflow\n    if (range > SIZE_MAX / sizeof(uint8_t)) {\n        std::cerr << \"Error: Range is too large, potential overflow detected.\" << std::endl;\n        return;\n    }\n\n    // Allocate memory safely\n    uint8_t* buffer = static_cast<uint8_t*>(malloc(range * sizeof(uint8_t)));\n    if (buffer == nullptr) {\n        std::cerr << \"Error: Memory allocation failed.\" << std::endl;\n        return;\n    }\n\n    // Use the allocated memory\n    // ...\n\n    // Free the allocated memory\n    free(buffer);\n}\n\nint main() {\n    size_t range = 100; // Example range value\n    allocateMemory(range);\n    return 0;\n}\n```\n\n### Library Dependencies\n\n- `<cstdint>`: For fixed-width integer types like `uint8_t`.\n- `<cstdlib>`: For `malloc` and `free` functions.\n- `<iostream>`: For input and output operations.\n\n### Relevant OWASP Resources\n\n- [OWASP Top Ten](https://owasp.org/www-project-top-ten/)\n- [OWASP Secure Coding Practices](https://owasp.org/www-project-secure-coding-practices-quick-reference-guide/)\n\n### Common Weakness Enumeration (CWE)\n\n- [CWE-190: Integer Overflow or Wraparound](https://cwe.mitre.org/data/definitions/190.html)\n- [CWE-401: Missing Release of Memory after Effective Lifetime](https://cwe.mitre.org/data/definitions/401.html)"
+              },
+              "properties": {
+                "tags": [
+                  "DS161085"
+                ]
+              }
+            },
+            {
+              "id": "glog-090cd031-4c57-473b-a625-ca813240a4e4",
+              "help": {
+                "text": "",
+                "markdown": "### Description\n\nThe \"Detected Issue with C Function (malloc)\" vulnerability in C++ typically arises from improper use of the `malloc` function, which is used to allocate memory dynamically. The specific vulnerability in the code snippet `malloc(range * sizeof(uint8_t))` can occur if the `range` variable is not properly validated. This can lead to several issues, such as integer overflow, buffer overflow, or memory allocation failures, which can be exploited to cause a denial of service or execute arbitrary code.\n\n### General Mitigation Advice\n\n1. **Input Validation**: Always validate input values to ensure they are within expected bounds before using them in memory allocation functions.\n2. **Check for Integer Overflow**: Ensure that the multiplication `range * sizeof(uint8_t)` does not result in an integer overflow.\n3. **Check Return Value**: Always check the return value of `malloc` to ensure that memory allocation was successful.\n4. **Use Safer Alternatives**: Consider using safer alternatives like `calloc`, which initializes the allocated memory to zero, or C++ constructs like `std::vector` that handle memory management automatically.\n\n### Source Code Fix Recommendation\n\n```cpp\n#include <cstdint>\n#include <cstdlib>\n#include <iostream>\n\n// Example function demonstrating safe memory allocation\nvoid allocateMemory(size_t range) {\n    // Check for potential overflow\n    if (range > SIZE_MAX / sizeof(uint8_t)) {\n        std::cerr << \"Error: Range is too large, potential overflow detected.\" << std::endl;\n        return;\n    }\n\n    // Allocate memory safely\n    uint8_t* buffer = static_cast<uint8_t*>(malloc(range * sizeof(uint8_t)));\n    if (buffer == nullptr) {\n        std::cerr << \"Error: Memory allocation failed.\" << std::endl;\n        return;\n    }\n\n    // Use the allocated memory\n    // ...\n\n    // Free the allocated memory\n    free(buffer);\n}\n\nint main() {\n    size_t range = 100; // Example range value\n    allocateMemory(range);\n    return 0;\n}\n```\n\n### Library Dependencies\n\n- `<cstdint>`: For fixed-width integer types like `uint8_t`.\n- `<cstdlib>`: For `malloc` and `free` functions.\n- `<iostream>`: For input and output operations.\n\n### Relevant OWASP Resources\n\n- [OWASP Top Ten](https://owasp.org/www-project-top-ten/)\n- [OWASP Secure Coding Practices](https://owasp.org/www-project-secure-coding-practices-quick-reference-guide/)\n\n### Common Weakness Enumeration (CWE)\n\n- [CWE-190: Integer Overflow or Wraparound](https://cwe.mitre.org/data/definitions/190.html)\n- [CWE-401: Missing Release of Memory after Effective Lifetime](https://cwe.mitre.org/data/definitions/401.html)"
+              },
+              "properties": {
+                "tags": [
+                  "DS161085"
+                ]
+              }
+            },
+            {
+              "id": "glog-1225fd37-e5be-46a9-8675-cf43c5ec4987",
+              "help": {
+                "text": "",
+                "markdown": "### Description\n\nThe \"Detected Issue with C Function (malloc)\" vulnerability in C++ typically arises from improper use of the `malloc` function, which is used to allocate memory dynamically. The specific vulnerability in the code snippet `malloc(range * sizeof(uint8_t))` can occur if the `range` variable is not properly validated. This can lead to several issues, such as integer overflow, buffer overflow, or memory allocation failures, which can be exploited to cause a denial of service or execute arbitrary code.\n\n### General Mitigation Advice\n\n1. **Input Validation**: Always validate input values to ensure they are within expected bounds before using them in memory allocation functions.\n2. **Check for Integer Overflow**: Ensure that the multiplication `range * sizeof(uint8_t)` does not result in an integer overflow.\n3. **Check Return Value**: Always check the return value of `malloc` to ensure that memory allocation was successful.\n4. **Use Safer Alternatives**: Consider using safer alternatives like `calloc`, which initializes the allocated memory to zero, or C++ constructs like `std::vector` that handle memory management automatically.\n\n### Source Code Fix Recommendation\n\n```cpp\n#include <cstdint>\n#include <cstdlib>\n#include <iostream>\n\n// Example function demonstrating safe memory allocation\nvoid allocateMemory(size_t range) {\n    // Check for potential overflow\n    if (range > SIZE_MAX / sizeof(uint8_t)) {\n        std::cerr << \"Error: Range is too large, potential overflow detected.\" << std::endl;\n        return;\n    }\n\n    // Allocate memory safely\n    uint8_t* buffer = static_cast<uint8_t*>(malloc(range * sizeof(uint8_t)));\n    if (buffer == nullptr) {\n        std::cerr << \"Error: Memory allocation failed.\" << std::endl;\n        return;\n    }\n\n    // Use the allocated memory\n    // ...\n\n    // Free the allocated memory\n    free(buffer);\n}\n\nint main() {\n    size_t range = 100; // Example range value\n    allocateMemory(range);\n    return 0;\n}\n```\n\n### Library Dependencies\n\n- `<cstdint>`: For fixed-width integer types like `uint8_t`.\n- `<cstdlib>`: For `malloc` and `free` functions.\n- `<iostream>`: For input and output operations.\n\n### Relevant OWASP Resources\n\n- [OWASP Top Ten](https://owasp.org/www-project-top-ten/)\n- [OWASP Secure Coding Practices](https://owasp.org/www-project-secure-coding-practices-quick-reference-guide/)\n\n### Common Weakness Enumeration (CWE)\n\n- [CWE-190: Integer Overflow or Wraparound](https://cwe.mitre.org/data/definitions/190.html)\n- [CWE-401: Missing Release of Memory after Effective Lifetime](https://cwe.mitre.org/data/definitions/401.html)"
+              },
+              "properties": {
+                "tags": [
+                  "DS161085"
+                ]
+              }
+            },
+            {
+              "id": "glog-09daf685-deda-4fd1-9a83-045ef52be70f",
+              "help": {
+                "text": "",
+                "markdown": "### Description\n\nThe \"Detected Use of Prohibited C Function (strncat)\" vulnerability arises when the `strncat` function is used in a way that can lead to buffer overflows or undefined behavior. The `strncat` function appends a specified number of characters from a source string to a destination string. However, if not used carefully, it can lead to writing beyond the allocated buffer size, causing memory corruption, crashes, or security vulnerabilities.\n\n### General Mitigation Advice\n\n1. **Use Safer Alternatives**: Consider using safer string manipulation functions like `strncpy_s` or `strlcat` if available, which are designed to prevent buffer overflows.\n2. **Proper Buffer Management**: Ensure that the destination buffer is large enough to hold the concatenated result, including the null terminator.\n3. **Input Validation**: Validate input lengths and ensure that they do not exceed buffer sizes.\n4. **Static Analysis Tools**: Use static analysis tools to detect potential buffer overflows and other vulnerabilities in the code.\n\n### Source Code Fix Recommendation\n\nGiven the specific vulnerability sink:\n\n```cpp\nstrncat(data, alarm_status[index], alarms_len);\n```\n\nA safer approach would be:\n\n```cpp\n#include <cstring> // Required for strncat\n\n// Assuming data is a char array with a known size\nsize_t data_size = sizeof(data) / sizeof(data[0]);\nsize_t data_len = strlen(data);\nsize_t available_space = data_size - data_len - 1; // Space for null terminator\n\n// Ensure that alarms_len does not exceed available space\nsize_t copy_len = (alarms_len < available_space) ? alarms_len : available_space;\nstrncat(data, alarm_status[index], copy_len);\n```\n\n### Library Dependencies\n\nTo execute the code example properly, the following library is required:\n\n- `<cstring>`: This library is required for using the `strncat` function.\n\n### OWASP Resources\n\n- [OWASP Top Ten](https://owasp.org/www-project-top-ten/)\n- [OWASP Secure Coding Practices](https://owasp.org/www-project-secure-coding-practices-quick-reference-guide/)\n\n### Common Weakness Enumeration (CWE)\n\n- [CWE-120: Buffer Copy without Checking Size of Input ('Classic Buffer Overflow')](https://cwe.mitre.org/data/definitions/120.html)"
+              },
+              "properties": {
+                "tags": [
+                  "DS108330"
+                ]
+              }
+            },
+            {
+              "id": "glog-51946a96-1574-4c52-ac1d-6ea70266e96d",
+              "help": {
+                "text": "",
+                "markdown": "### Description\n\nThe vulnerability associated with the `strlen` function in C++ arises when the function is used without proper validation of the input string. If `strlen` is called on a null pointer or an improperly terminated string, it can lead to undefined behavior, including crashes or security vulnerabilities such as buffer overflows. This is particularly dangerous when the input is derived from untrusted sources.\n\n### General Mitigation Advice\n\n1. **Input Validation**: Always validate input strings to ensure they are not null and are properly null-terminated before passing them to `strlen`.\n2. **Use Safer Alternatives**: Consider using safer string handling functions or libraries that provide bounds checking, such as `std::string` in C++.\n3. **Error Handling**: Implement robust error handling to manage unexpected or invalid input gracefully.\n\n### Source Code Fix Recommendation\n\nBelow is a code example demonstrating a potential fix for the vulnerability when using `strlen(separator)`:\n\n```cpp\n#include <iostream>\n#include <cstring> // Required for strlen\n#include <string>  // Required for std::string\n\nvoid processSeparator(const char* separator) {\n    if (separator == nullptr) {\n        std::cerr << \"Error: separator is null.\" << std::endl;\n        return;\n    }\n\n    std::string sepStr(separator);\n    if (sepStr.empty()) {\n        std::cerr << \"Error: separator is empty.\" << std::endl;\n        return;\n    }\n\n    size_t length = strlen(separator);\n    std::cout << \"Separator length: \" << length << std::endl;\n}\n\nint main() {\n    const char* separator = \"example\";\n    processSeparator(separator);\n    return 0;\n}\n```\n\n### Library Dependencies\n\nTo execute the above code example properly, the following standard libraries are required:\n\n- `<iostream>`: For input and output stream operations.\n- `<cstring>`: For C-style string handling functions like `strlen`.\n- `<string>`: For using `std::string` which provides safer string handling.\n\n### Relevant Resources\n\n- [OWASP Top Ten](https://owasp.org/www-project-top-ten/)\n- [OWASP Secure Coding Practices](https://owasp.org/www-project-secure-coding-practices-quick-reference-guide/)\n\n### Common Weakness Enumeration (CWE)\n\n- [CWE-120: Buffer Copy without Checking Size of Input ('Classic Buffer Overflow')](https://cwe.mitre.org/data/definitions/120.html)\n- [CWE-126: Buffer Over-read](https://cwe.mitre.org/data/definitions/126.html)"
+              },
+              "properties": {
+                "tags": [
+                  "DS140021"
+                ]
+              }
+            },
+            {
+              "id": "glog-18229660-9f24-44d8-b17a-68778a9e6404",
+              "help": {
+                "text": "",
+                "markdown": "### Description\n\nThe vulnerability associated with the `strlen` function in C++ arises when it is used on a potentially uninitialized or improperly terminated string. This can lead to undefined behavior, including reading beyond the buffer's allocated memory, which may result in a program crash or exposure of sensitive data. In the specific case of `strlen(alarm_status[index])`, if `alarm_status[index]` is not a properly null-terminated string, `strlen` will continue reading memory until it encounters a null byte, which can lead to a buffer over-read.\n\n### General Mitigation Advice\n\n1. **Ensure Proper Initialization**: Always initialize strings and ensure they are null-terminated before using them with functions like `strlen`.\n2. **Use Safer Alternatives**: Consider using safer string handling functions or libraries that automatically manage string lengths and buffer sizes.\n3. **Bounds Checking**: Implement bounds checking to ensure that any string operations do not exceed the allocated buffer size.\n4. **Static Analysis Tools**: Use static analysis tools to detect potential buffer over-read vulnerabilities in your code.\n\n### Source Code Fix Recommendation\n\nTo mitigate the vulnerability in the specific code snippet, ensure that `alarm_status[index]` is a properly null-terminated string before calling `strlen`. Here is an example fix:\n\n```cpp\n#include <cstring> // Required for strlen\n#include <iostream> // Required for std::cout\n\nconst size_t MAX_LENGTH = 100; // Define a maximum length for the string\n\nvoid checkAlarmStatus(char alarm_status[][MAX_LENGTH], size_t index) {\n    // Ensure the string is null-terminated\n    alarm_status[index][MAX_LENGTH - 1] = '\\0';\n\n    // Now it's safe to use strlen\n    size_t length = strlen(alarm_status[index]);\n    std::cout << \"Length of alarm_status[\" << index << \"]: \" << length << std::endl;\n}\n\nint main() {\n    char alarm_status[10][MAX_LENGTH] = { \"Alarm1\", \"Alarm2\" }; // Example initialization\n    checkAlarmStatus(alarm_status, 0);\n    return 0;\n}\n```\n\n### Library Dependencies\n\nTo execute the code example properly, the following libraries are required:\n\n- `<cstring>`: For the `strlen` function.\n- `<iostream>`: For input and output operations.\n\n### OWASP Resources\n\n- [OWASP Top Ten](https://owasp.org/www-project-top-ten/)\n- [OWASP Secure Coding Practices](https://owasp.org/www-project-secure-coding-practices-quick-reference-guide/)\n\n### Common Weakness Enumeration (CWE)\n\n- [CWE-126: Buffer Over-read](https://cwe.mitre.org/data/definitions/126.html)"
+              },
+              "properties": {
+                "tags": [
+                  "DS140021"
+                ]
+              }
+            },
+            {
+              "id": "glog-7397fe5e-a924-4d92-9514-7245fe1f1ffe",
+              "help": {
+                "text": "",
+                "markdown": "### Description\n\nThe vulnerability associated with the `strlen` function in C++ arises when the function is used without proper validation of the input string. If `strlen` is called on a null pointer or an improperly terminated string, it can lead to undefined behavior, including crashes or security vulnerabilities such as buffer overflows. This is particularly dangerous when the input is derived from untrusted sources.\n\n### General Mitigation Advice\n\n1. **Input Validation**: Always validate input strings to ensure they are not null and are properly null-terminated before passing them to `strlen`.\n2. **Use Safer Alternatives**: Consider using safer string handling functions or libraries that provide bounds checking, such as `std::string` in C++.\n3. **Error Handling**: Implement robust error handling to manage unexpected or invalid input gracefully.\n\n### Source Code Fix Recommendation\n\nBelow is a code example demonstrating a potential fix for the vulnerability when using `strlen(separator)`:\n\n```cpp\n#include <iostream>\n#include <cstring> // Required for strlen\n#include <string>  // Required for std::string\n\nvoid processSeparator(const char* separator) {\n    if (separator == nullptr) {\n        std::cerr << \"Error: separator is null.\" << std::endl;\n        return;\n    }\n\n    std::string sepStr(separator);\n    if (sepStr.empty()) {\n        std::cerr << \"Error: separator is empty.\" << std::endl;\n        return;\n    }\n\n    size_t length = strlen(separator);\n    std::cout << \"Separator length: \" << length << std::endl;\n}\n\nint main() {\n    const char* separator = \"example\";\n    processSeparator(separator);\n    return 0;\n}\n```\n\n### Library Dependencies\n\nTo execute the above code example properly, the following standard libraries are required:\n\n- `<iostream>`: For input and output stream operations.\n- `<cstring>`: For C-style string handling functions like `strlen`.\n- `<string>`: For using `std::string` which provides safer string handling.\n\n### Relevant Resources\n\n- [OWASP Top Ten](https://owasp.org/www-project-top-ten/)\n- [OWASP Secure Coding Practices](https://owasp.org/www-project-secure-coding-practices-quick-reference-guide/)\n\n### Common Weakness Enumeration (CWE)\n\n- [CWE-120: Buffer Copy without Checking Size of Input ('Classic Buffer Overflow')](https://cwe.mitre.org/data/definitions/120.html)\n- [CWE-126: Buffer Over-read](https://cwe.mitre.org/data/definitions/126.html)"
+              },
+              "properties": {
+                "tags": [
+                  "DS140021"
+                ]
+              }
+            },
+            {
+              "id": "glog-1b164d8d-efd2-4da8-bfa5-629dcd61e69d",
+              "help": {
+                "text": "",
+                "markdown": "### Description\n\nThe vulnerability associated with the `strlen` function in C++ arises when it is used on a potentially uninitialized or improperly terminated string. This can lead to undefined behavior, including reading beyond the buffer's allocated memory, which may result in a program crash or exposure of sensitive data. In the specific case of `strlen(alarm_status[index])`, if `alarm_status[index]` is not a properly null-terminated string, `strlen` will continue reading memory until it encounters a null byte, which can lead to a buffer over-read.\n\n### General Mitigation Advice\n\n1. **Ensure Proper Initialization**: Always initialize strings and ensure they are null-terminated before using them with functions like `strlen`.\n2. **Use Safer Alternatives**: Consider using safer string handling functions or libraries that automatically manage string lengths and buffer sizes.\n3. **Bounds Checking**: Implement bounds checking to ensure that any string operations do not exceed the allocated buffer size.\n4. **Static Analysis Tools**: Use static analysis tools to detect potential buffer over-read vulnerabilities in your code.\n\n### Source Code Fix Recommendation\n\nTo mitigate the vulnerability in the specific code snippet, ensure that `alarm_status[index]` is a properly null-terminated string before calling `strlen`. Here is an example fix:\n\n```cpp\n#include <cstring> // Required for strlen\n#include <iostream> // Required for std::cout\n\nconst size_t MAX_LENGTH = 100; // Define a maximum length for the string\n\nvoid checkAlarmStatus(char alarm_status[][MAX_LENGTH], size_t index) {\n    // Ensure the string is null-terminated\n    alarm_status[index][MAX_LENGTH - 1] = '\\0';\n\n    // Now it's safe to use strlen\n    size_t length = strlen(alarm_status[index]);\n    std::cout << \"Length of alarm_status[\" << index << \"]: \" << length << std::endl;\n}\n\nint main() {\n    char alarm_status[10][MAX_LENGTH] = { \"Alarm1\", \"Alarm2\" }; // Example initialization\n    checkAlarmStatus(alarm_status, 0);\n    return 0;\n}\n```\n\n### Library Dependencies\n\nTo execute the code example properly, the following libraries are required:\n\n- `<cstring>`: For the `strlen` function.\n- `<iostream>`: For input and output operations.\n\n### OWASP Resources\n\n- [OWASP Top Ten](https://owasp.org/www-project-top-ten/)\n- [OWASP Secure Coding Practices](https://owasp.org/www-project-secure-coding-practices-quick-reference-guide/)\n\n### Common Weakness Enumeration (CWE)\n\n- [CWE-126: Buffer Over-read](https://cwe.mitre.org/data/definitions/126.html)"
+              },
+              "properties": {
+                "tags": [
+                  "DS140021"
+                ]
+              }
+            },
+            {
+              "id": "glog-3ffac89a-b713-4b97-8ea9-1360abe64ba2",
+              "help": {
+                "text": "",
+                "markdown": "### Description\n\nThe vulnerability \"An Insecure Cipher Mode of Operation Was Utilized\" in C++ refers to the use of a cryptographic cipher mode that is not secure, such as Electronic Codebook (ECB) mode. ECB mode is insecure because it encrypts identical plaintext blocks into identical ciphertext blocks, which can reveal patterns and potentially allow attackers to deduce information about the plaintext.\n\n### General Mitigation Advice\n\n1. **Use a Secure Cipher Mode**: Replace ECB mode with a more secure mode such as Cipher Block Chaining (CBC), Galois/Counter Mode (GCM), or Counter (CTR) mode.\n2. **Use a Strong Key**: Ensure that cryptographic keys are of sufficient length and randomness.\n3. **Implement Proper Key Management**: Securely store and manage cryptographic keys.\n4. **Use a Cryptographic Library**: Utilize well-established cryptographic libraries that provide secure implementations of cryptographic algorithms and modes.\n\n### Source Code Fix Recommendation\n\nBelow is an example of how to replace an insecure ECB mode with a secure CBC mode using a cryptographic library like OpenSSL.\n\n```cpp\n#include <openssl/evp.h>\n#include <openssl/rand.h>\n#include <iostream>\n#include <vector>\n\nvoid encrypt(const std::vector<unsigned char>& plaintext, std::vector<unsigned char>& ciphertext, const std::vector<unsigned char>& key, const std::vector<unsigned char>& iv) {\n    EVP_CIPHER_CTX* ctx = EVP_CIPHER_CTX_new();\n    EVP_EncryptInit_ex(ctx, EVP_aes_256_cbc(), NULL, key.data(), iv.data());\n\n    int len;\n    ciphertext.resize(plaintext.size() + EVP_CIPHER_block_size(EVP_aes_256_cbc()));\n    EVP_EncryptUpdate(ctx, ciphertext.data(), &len, plaintext.data(), plaintext.size());\n    int ciphertext_len = len;\n\n    EVP_EncryptFinal_ex(ctx, ciphertext.data() + len, &len);\n    ciphertext_len += len;\n    ciphertext.resize(ciphertext_len);\n\n    EVP_CIPHER_CTX_free(ctx);\n}\n\nint main() {\n    std::vector<unsigned char> key(32); // 256-bit key\n    std::vector<unsigned char> iv(16);  // 128-bit IV\n    RAND_bytes(key.data(), key.size());\n    RAND_bytes(iv.data(), iv.size());\n\n    std::vector<unsigned char> plaintext = {'H', 'e', 'l', 'l', 'o', ' ', 'W', 'o', 'r', 'l', 'd'};\n    std::vector<unsigned char> ciphertext;\n\n    encrypt(plaintext, ciphertext, key, iv);\n\n    std::cout << \"Ciphertext: \";\n    for (unsigned char c : ciphertext) {\n        std::cout << std::hex << static_cast<int>(c);\n    }\n    std::cout << std::endl;\n\n    return 0;\n}\n```\n\n### Library Dependencies\n\n- OpenSSL\n\n### OWASP Resources\n\n- [OWASP Cryptographic Storage Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Cryptographic_Storage_Cheat_Sheet.html)\n- [OWASP Top Ten](https://owasp.org/www-project-top-ten/)\n\n### Common Weakness Enumeration (CWE)\n\n- [CWE-327: Use of a Broken or Risky Cryptographic Algorithm](https://cwe.mitre.org/data/definitions/327.html)"
+              },
+              "properties": {
+                "tags": [
+                  "DS187371"
+                ]
+              }
+            },
+            {
+              "id": "glog-de7610cf-f9b3-4408-843c-d689fdf57fc8",
+              "help": {
+                "text": "",
+                "markdown": "### Description\n\nThe vulnerability associated with the `strlen` function in C++ arises from its inability to handle non-null-terminated strings safely. When `strlen` is called on a string that is not properly null-terminated, it can lead to undefined behavior, including reading beyond the buffer's bounds, which can cause crashes or expose sensitive data. This is a common issue in C/C++ programming due to the manual management of string termination.\n\n### General Mitigation Advice\n\n1. **Ensure Proper Null-Termination**: Always ensure that strings are null-terminated before passing them to `strlen`.\n2. **Use Safer Alternatives**: Consider using safer string handling functions or libraries that automatically manage string lengths and termination, such as `std::string` in C++.\n3. **Bounds Checking**: Implement bounds checking to ensure that operations on strings do not exceed their allocated memory.\n4. **Static Analysis Tools**: Use static analysis tools to detect potential buffer overflows and other vulnerabilities in your code.\n\n### Source Code Fix Recommendation\n\n```cpp\n#include <iostream>\n#include <cstring> // Required for strlen\n\nint main() {\n    // Example of a properly null-terminated string\n    char data[] = \"Hello, World!\";\n    \n    // Ensure the string is null-terminated\n    data[sizeof(data) - 1] = '\\0';\n\n    // Safe usage of strlen\n    size_t length = strlen(data);\n    std::cout << \"Length of the string is: \" << length << std::endl;\n\n    return 0;\n}\n```\n\n### Library Dependencies\n\n- `<iostream>`: Required for input and output operations.\n- `<cstring>`: Required for using the `strlen` function.\n\n### Relevant Resources\n\n- [OWASP C++ Secure Coding Practices](https://owasp.org/www-project-secure-coding-practices-quick-reference-guide/)\n- [Common Weakness Enumeration: CWE-170](https://cwe.mitre.org/data/definitions/170.html)\n\nThese resources provide further guidance on secure coding practices and detailed information on common vulnerabilities and exposures."
+              },
+              "properties": {
+                "tags": [
+                  "DS140021"
+                ]
+              }
+            }
+          ],
+          "language": "en-US",
+          "contents": [
+            "localizedData",
+            "nonLocalizedData"
+          ],
+          "isComprehensive": false
+        }
+      },
+      "language": "en-US",
+      "results": [
+        {
+          "ruleId": "glog-de65e1f0-d959-4b02-b3b1-04fd7595bcbd",
+          "kind": "fail",
+          "level": "note",
+          "message": {
+            "text": "\"Detected Issue with C Function (malloc)\""
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "tools/apml_tool.c"
+                },
+                "region": {
+                  "startLine": 731,
+                  "startColumn": 10,
+                  "endLine": 731,
+                  "endColumn": 40,
+                  "charOffset": 20244,
+                  "charLength": 30,
+                  "snippet": {
+                    "text": "malloc(range * sizeof(uint8_t)",
+                    "rendered": {
+                      "text": "malloc(range * sizeof(uint8_t)",
+                      "markdown": "`malloc(range * sizeof(uint8_t)`"
+                    }
+                  },
+                  "sourceLanguage": "c"
+                }
+              }
+            }
+          ],
+          "fixes": [
+            {
+              "description": {
+                "text": "If the value provided to malloc is the result of unsafe integer math, it can result in an exploitable condition. "
+              },
+              "artifactChanges": [
+                {
+                  "artifactLocation": {
+                    "uri": "tools/apml_tool.c"
+                  },
+                  "replacements": [
+                    {
+                      "deletedRegion": {
+                        "charOffset": 20244,
+                        "charLength": 30
+                      },
+                      "insertedContent": {
+                        "text": "calloc(<number of elements>, <size of each element>)"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "DevSkimSeverity": "BestPractice",
+            "DevSkimConfidence": "High",
+            "tags": [
+              "API.DangerousAPI.ProblematicFunction"
+            ]
+          }
+        },
+        {
+          "ruleId": "glog-35bd9551-5ddd-40ae-afc4-cc48b115181c",
+          "kind": "fail",
+          "level": "note",
+          "message": {
+            "text": "\"Detected Issue with C Function (malloc)\""
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "tools/apml_tool.c"
+                },
+                "region": {
+                  "startLine": 629,
+                  "startColumn": 10,
+                  "endLine": 629,
+                  "endColumn": 40,
+                  "charOffset": 17133,
+                  "charLength": 30,
+                  "snippet": {
+                    "text": "malloc(range * sizeof(uint8_t)",
+                    "rendered": {
+                      "text": "malloc(range * sizeof(uint8_t)",
+                      "markdown": "`malloc(range * sizeof(uint8_t)`"
+                    }
+                  },
+                  "sourceLanguage": "c"
+                }
+              }
+            }
+          ],
+          "fixes": [
+            {
+              "description": {
+                "text": "If the value provided to malloc is the result of unsafe integer math, it can result in an exploitable condition. "
+              },
+              "artifactChanges": [
+                {
+                  "artifactLocation": {
+                    "uri": "tools/apml_tool.c"
+                  },
+                  "replacements": [
+                    {
+                      "deletedRegion": {
+                        "charOffset": 17133,
+                        "charLength": 30
+                      },
+                      "insertedContent": {
+                        "text": "calloc(<number of elements>, <size of each element>)"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "DevSkimSeverity": "BestPractice",
+            "DevSkimConfidence": "High",
+            "tags": [
+              "API.DangerousAPI.ProblematicFunction"
+            ]
+          }
+        },
+        {
+          "ruleId": "glog-be8a5c08-911d-43ea-8e79-4e9bf821ea7c",
+          "kind": "fail",
+          "level": "note",
+          "message": {
+            "text": "\"Detected Issue with C Function (malloc)\""
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "tools/apml_tool.c"
+                },
+                "region": {
+                  "startLine": 688,
+                  "startColumn": 10,
+                  "endLine": 688,
+                  "endColumn": 40,
+                  "charOffset": 18861,
+                  "charLength": 30,
+                  "snippet": {
+                    "text": "malloc(range * sizeof(uint8_t)",
+                    "rendered": {
+                      "text": "malloc(range * sizeof(uint8_t)",
+                      "markdown": "`malloc(range * sizeof(uint8_t)`"
+                    }
+                  },
+                  "sourceLanguage": "c"
+                }
+              }
+            }
+          ],
+          "fixes": [
+            {
+              "description": {
+                "text": "If the value provided to malloc is the result of unsafe integer math, it can result in an exploitable condition. "
+              },
+              "artifactChanges": [
+                {
+                  "artifactLocation": {
+                    "uri": "tools/apml_tool.c"
+                  },
+                  "replacements": [
+                    {
+                      "deletedRegion": {
+                        "charOffset": 18861,
+                        "charLength": 30
+                      },
+                      "insertedContent": {
+                        "text": "calloc(<number of elements>, <size of each element>)"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "DevSkimSeverity": "BestPractice",
+            "DevSkimConfidence": "High",
+            "tags": [
+              "API.DangerousAPI.ProblematicFunction"
+            ]
+          }
+        },
+        {
+          "ruleId": "glog-b7a64ecc-9279-40ad-9868-c1f02c9e0e6e",
+          "kind": "fail",
+          "level": "note",
+          "message": {
+            "text": "\"Detected Issue with C Function (malloc)\""
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "tools/apml_tool.c"
+                },
+                "region": {
+                  "startLine": 674,
+                  "startColumn": 10,
+                  "endLine": 674,
+                  "endColumn": 40,
+                  "charOffset": 18436,
+                  "charLength": 30,
+                  "snippet": {
+                    "text": "malloc(range * sizeof(uint8_t)",
+                    "rendered": {
+                      "text": "malloc(range * sizeof(uint8_t)",
+                      "markdown": "`malloc(range * sizeof(uint8_t)`"
+                    }
+                  },
+                  "sourceLanguage": "c"
+                }
+              }
+            }
+          ],
+          "fixes": [
+            {
+              "description": {
+                "text": "If the value provided to malloc is the result of unsafe integer math, it can result in an exploitable condition. "
+              },
+              "artifactChanges": [
+                {
+                  "artifactLocation": {
+                    "uri": "tools/apml_tool.c"
+                  },
+                  "replacements": [
+                    {
+                      "deletedRegion": {
+                        "charOffset": 18436,
+                        "charLength": 30
+                      },
+                      "insertedContent": {
+                        "text": "calloc(<number of elements>, <size of each element>)"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "DevSkimSeverity": "BestPractice",
+            "DevSkimConfidence": "High",
+            "tags": [
+              "API.DangerousAPI.ProblematicFunction"
+            ]
+          }
+        },
+        {
+          "ruleId": "glog-090cd031-4c57-473b-a625-ca813240a4e4",
+          "kind": "fail",
+          "level": "note",
+          "message": {
+            "text": "\"Detected Issue with C Function (malloc)\""
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "tools/apml_tool.c"
+                },
+                "region": {
+                  "startLine": 583,
+                  "startColumn": 10,
+                  "endLine": 583,
+                  "endColumn": 40,
+                  "charOffset": 15883,
+                  "charLength": 30,
+                  "snippet": {
+                    "text": "malloc(range * sizeof(uint8_t)",
+                    "rendered": {
+                      "text": "malloc(range * sizeof(uint8_t)",
+                      "markdown": "`malloc(range * sizeof(uint8_t)`"
+                    }
+                  },
+                  "sourceLanguage": "c"
+                }
+              }
+            }
+          ],
+          "fixes": [
+            {
+              "description": {
+                "text": "If the value provided to malloc is the result of unsafe integer math, it can result in an exploitable condition. "
+              },
+              "artifactChanges": [
+                {
+                  "artifactLocation": {
+                    "uri": "tools/apml_tool.c"
+                  },
+                  "replacements": [
+                    {
+                      "deletedRegion": {
+                        "charOffset": 15883,
+                        "charLength": 30
+                      },
+                      "insertedContent": {
+                        "text": "calloc(<number of elements>, <size of each element>)"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "DevSkimSeverity": "BestPractice",
+            "DevSkimConfidence": "High",
+            "tags": [
+              "API.DangerousAPI.ProblematicFunction"
+            ]
+          }
+        },
+        {
+          "ruleId": "glog-1225fd37-e5be-46a9-8675-cf43c5ec4987",
+          "kind": "fail",
+          "level": "note",
+          "message": {
+            "text": "\"Detected Issue with C Function (malloc)\""
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "tools/apml_tool.c"
+                },
+                "region": {
+                  "startLine": 561,
+                  "startColumn": 10,
+                  "endLine": 561,
+                  "endColumn": 40,
+                  "charOffset": 15273,
+                  "charLength": 30,
+                  "snippet": {
+                    "text": "malloc(range * sizeof(uint8_t)",
+                    "rendered": {
+                      "text": "malloc(range * sizeof(uint8_t)",
+                      "markdown": "`malloc(range * sizeof(uint8_t)`"
+                    }
+                  },
+                  "sourceLanguage": "c"
+                }
+              }
+            }
+          ],
+          "fixes": [
+            {
+              "description": {
+                "text": "If the value provided to malloc is the result of unsafe integer math, it can result in an exploitable condition. "
+              },
+              "artifactChanges": [
+                {
+                  "artifactLocation": {
+                    "uri": "tools/apml_tool.c"
+                  },
+                  "replacements": [
+                    {
+                      "deletedRegion": {
+                        "charOffset": 15273,
+                        "charLength": 30
+                      },
+                      "insertedContent": {
+                        "text": "calloc(<number of elements>, <size of each element>)"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "DevSkimSeverity": "BestPractice",
+            "DevSkimConfidence": "High",
+            "tags": [
+              "API.DangerousAPI.ProblematicFunction"
+            ]
+          }
+        },
+        {
+          "ruleId": "glog-09daf685-deda-4fd1-9a83-045ef52be70f",
+          "kind": "fail",
+          "level": "error",
+          "message": {
+            "text": "\"Detected Use of Prohibited C Function (strncat)\""
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "tools/mi300_tool.c"
+                },
+                "region": {
+                  "startLine": 181,
+                  "startColumn": 4,
+                  "endLine": 181,
+                  "endColumn": 50,
+                  "charOffset": 5229,
+                  "charLength": 46,
+                  "snippet": {
+                    "text": "strncat(data, alarm_status[index], alarms_len)",
+                    "rendered": {
+                      "text": "strncat(data, alarm_status[index], alarms_len)",
+                      "markdown": "`strncat(data, alarm_status[index], alarms_len)`"
+                    }
+                  },
+                  "sourceLanguage": "c"
+                }
+              }
+            }
+          ],
+          "fixes": [
+            {
+              "description": {
+                "text": "strncat adds the null terminator at character 'n + 1', rather than at the nth character. this frequently leads to the null terminator being added in the memory adjacent to the destination buffer, rather than in the destination buffer."
+              },
+              "artifactChanges": [
+                {
+                  "artifactLocation": {
+                    "uri": "tools/mi300_tool.c"
+                  },
+                  "replacements": [
+                    {
+                      "deletedRegion": {
+                        "charOffset": 5229,
+                        "charLength": 46
+                      },
+                      "insertedContent": {
+                        "text": "strcat_s(data,  alarms_len,  alarm_status[index])"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "description": {
+                "text": "strncat adds the null terminator at character 'n + 1', rather than at the nth character. this frequently leads to the null terminator being added in the memory adjacent to the destination buffer, rather than in the destination buffer."
+              },
+              "artifactChanges": [
+                {
+                  "artifactLocation": {
+                    "uri": "tools/mi300_tool.c"
+                  },
+                  "replacements": [
+                    {
+                      "deletedRegion": {
+                        "charOffset": 5229,
+                        "charLength": 46
+                      },
+                      "insertedContent": {
+                        "text": "strlcat(data,  alarm_status[index],  alarms_len)"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "DevSkimSeverity": "Important",
+            "DevSkimConfidence": "High",
+            "tags": [
+              "API.DangerousAPI.BannedFunction"
+            ]
+          }
+        },
+        {
+          "ruleId": "glog-51946a96-1574-4c52-ac1d-6ea70266e96d",
+          "kind": "fail",
+          "level": "note",
+          "message": {
+            "text": "\"Detected Issue with C Function (strlen)\""
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "tools/mi300_tool.c"
+                },
+                "region": {
+                  "startLine": 178,
+                  "startColumn": 37,
+                  "endLine": 178,
+                  "endColumn": 54,
+                  "charOffset": 5158,
+                  "charLength": 17,
+                  "snippet": {
+                    "text": "strlen(separator)",
+                    "rendered": {
+                      "text": "strlen(separator)",
+                      "markdown": "`strlen(separator)`"
+                    }
+                  },
+                  "sourceLanguage": "c"
+                }
+              }
+            }
+          ],
+          "fixes": [
+            {
+              "description": {
+                "text": "If a string is missing a null terminator, strlen will read past the end of the buffer"
+              },
+              "artifactChanges": [
+                {
+                  "artifactLocation": {
+                    "uri": "tools/mi300_tool.c"
+                  },
+                  "replacements": [
+                    {
+                      "deletedRegion": {
+                        "charOffset": 5158,
+                        "charLength": 17
+                      },
+                      "insertedContent": {
+                        "text": "strlen_s(separator, <size of separator>)"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "description": {
+                "text": "If a string is missing a null terminator, strlen will read past the end of the buffer"
+              },
+              "artifactChanges": [
+                {
+                  "artifactLocation": {
+                    "uri": "tools/mi300_tool.c"
+                  },
+                  "replacements": [
+                    {
+                      "deletedRegion": {
+                        "charOffset": 5158,
+                        "charLength": 17
+                      },
+                      "insertedContent": {
+                        "text": "strnlen(separator, <size of separator>)"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "DevSkimSeverity": "BestPractice",
+            "DevSkimConfidence": "High",
+            "tags": [
+              "API.DangerousAPI.ProblematicFunction"
+            ]
+          }
+        },
+        {
+          "ruleId": "glog-18229660-9f24-44d8-b17a-68778a9e6404",
+          "kind": "fail",
+          "level": "note",
+          "message": {
+            "text": "\"Identified Issue with C Function (strlen)\""
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "tools/mi300_tool.c"
+                },
+                "region": {
+                  "startLine": 174,
+                  "startColumn": 12,
+                  "endLine": 174,
+                  "endColumn": 39,
+                  "charOffset": 5023,
+                  "charLength": 27,
+                  "snippet": {
+                    "text": "strlen(alarm_status[index])",
+                    "rendered": {
+                      "text": "strlen(alarm_status[index])",
+                      "markdown": "`strlen(alarm_status[index])`"
+                    }
+                  },
+                  "sourceLanguage": "c"
+                }
+              }
+            }
+          ],
+          "fixes": [
+            {
+              "description": {
+                "text": "If a string is missing a null terminator, strlen will read past the end of the buffer"
+              },
+              "artifactChanges": [
+                {
+                  "artifactLocation": {
+                    "uri": "tools/mi300_tool.c"
+                  },
+                  "replacements": [
+                    {
+                      "deletedRegion": {
+                        "charOffset": 5023,
+                        "charLength": 27
+                      },
+                      "insertedContent": {
+                        "text": "strlen_s(alarm_status[index], <size of alarm_status[index]>)"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "description": {
+                "text": "If a string is missing a null terminator, strlen will read past the end of the buffer"
+              },
+              "artifactChanges": [
+                {
+                  "artifactLocation": {
+                    "uri": "tools/mi300_tool.c"
+                  },
+                  "replacements": [
+                    {
+                      "deletedRegion": {
+                        "charOffset": 5023,
+                        "charLength": 27
+                      },
+                      "insertedContent": {
+                        "text": "strnlen(alarm_status[index], <size of alarm_status[index]>)"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "DevSkimSeverity": "BestPractice",
+            "DevSkimConfidence": "High",
+            "tags": [
+              "API.DangerousAPI.ProblematicFunction"
+            ]
+          }
+        },
+        {
+          "ruleId": "glog-7397fe5e-a924-4d92-9514-7245fe1f1ffe",
+          "kind": "fail",
+          "level": "note",
+          "message": {
+            "text": "\"Detected Issue with C Function (strlen)\""
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "tools/mi300_tool.c"
+                },
+                "region": {
+                  "startLine": 173,
+                  "startColumn": 56,
+                  "endLine": 173,
+                  "endColumn": 73,
+                  "charOffset": 4993,
+                  "charLength": 17,
+                  "snippet": {
+                    "text": "strlen(separator)",
+                    "rendered": {
+                      "text": "strlen(separator)",
+                      "markdown": "`strlen(separator)`"
+                    }
+                  },
+                  "sourceLanguage": "c"
+                }
+              }
+            }
+          ],
+          "fixes": [
+            {
+              "description": {
+                "text": "If a string is missing a null terminator, strlen will read past the end of the buffer"
+              },
+              "artifactChanges": [
+                {
+                  "artifactLocation": {
+                    "uri": "tools/mi300_tool.c"
+                  },
+                  "replacements": [
+                    {
+                      "deletedRegion": {
+                        "charOffset": 4993,
+                        "charLength": 17
+                      },
+                      "insertedContent": {
+                        "text": "strlen_s(separator, <size of separator>)"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "description": {
+                "text": "If a string is missing a null terminator, strlen will read past the end of the buffer"
+              },
+              "artifactChanges": [
+                {
+                  "artifactLocation": {
+                    "uri": "tools/mi300_tool.c"
+                  },
+                  "replacements": [
+                    {
+                      "deletedRegion": {
+                        "charOffset": 4993,
+                        "charLength": 17
+                      },
+                      "insertedContent": {
+                        "text": "strnlen(separator, <size of separator>)"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "DevSkimSeverity": "BestPractice",
+            "DevSkimConfidence": "High",
+            "tags": [
+              "API.DangerousAPI.ProblematicFunction"
+            ]
+          }
+        },
+        {
+          "ruleId": "glog-1b164d8d-efd2-4da8-bfa5-629dcd61e69d",
+          "kind": "fail",
+          "level": "note",
+          "message": {
+            "text": "\"Identified Issue with C Function (strlen)\""
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "tools/mi300_tool.c"
+                },
+                "region": {
+                  "startLine": 173,
+                  "startColumn": 26,
+                  "endLine": 173,
+                  "endColumn": 53,
+                  "charOffset": 4963,
+                  "charLength": 27,
+                  "snippet": {
+                    "text": "strlen(alarm_status[index])",
+                    "rendered": {
+                      "text": "strlen(alarm_status[index])",
+                      "markdown": "`strlen(alarm_status[index])`"
+                    }
+                  },
+                  "sourceLanguage": "c"
+                }
+              }
+            }
+          ],
+          "fixes": [
+            {
+              "description": {
+                "text": "If a string is missing a null terminator, strlen will read past the end of the buffer"
+              },
+              "artifactChanges": [
+                {
+                  "artifactLocation": {
+                    "uri": "tools/mi300_tool.c"
+                  },
+                  "replacements": [
+                    {
+                      "deletedRegion": {
+                        "charOffset": 4963,
+                        "charLength": 27
+                      },
+                      "insertedContent": {
+                        "text": "strlen_s(alarm_status[index], <size of alarm_status[index]>)"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "description": {
+                "text": "If a string is missing a null terminator, strlen will read past the end of the buffer"
+              },
+              "artifactChanges": [
+                {
+                  "artifactLocation": {
+                    "uri": "tools/mi300_tool.c"
+                  },
+                  "replacements": [
+                    {
+                      "deletedRegion": {
+                        "charOffset": 4963,
+                        "charLength": 27
+                      },
+                      "insertedContent": {
+                        "text": "strnlen(alarm_status[index], <size of alarm_status[index]>)"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "DevSkimSeverity": "BestPractice",
+            "DevSkimConfidence": "High",
+            "tags": [
+              "API.DangerousAPI.ProblematicFunction"
+            ]
+          }
+        },
+        {
+          "ruleId": "glog-3ffac89a-b713-4b97-8ea9-1360abe64ba2",
+          "kind": "fail",
+          "level": "error",
+          "message": {
+            "text": "\"An Insecure Cipher Mode of Operation Was Utilized\""
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/esmi_oob/esmi_cpuid_msr.c"
+                },
+                "region": {
+                  "startLine": 359,
+                  "startColumn": 13,
+                  "endLine": 359,
+                  "endColumn": 16,
+                  "charOffset": 9191,
+                  "charLength": 3,
+                  "snippet": {
+                    "text": "EAX",
+                    "rendered": {
+                      "text": "EAX",
+                      "markdown": "`EAX`"
+                    }
+                  },
+                  "sourceLanguage": "c"
+                }
+              }
+            }
+          ],
+          "properties": {
+            "DevSkimSeverity": "Important",
+            "DevSkimConfidence": "Medium",
+            "tags": [
+              "Cryptography.Symmetric.CipherMode.Weak"
+            ]
+          }
+        },
+        {
+          "ruleId": "glog-de7610cf-f9b3-4408-843c-d689fdf57fc8",
+          "kind": "fail",
+          "level": "note",
+          "message": {
+            "text": "\"Detected Issue with C Function (strlen)\""
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "tools/mi300_tool.c"
+                },
+                "region": {
+                  "startLine": 175,
+                  "startColumn": 8,
+                  "endLine": 175,
+                  "endColumn": 20,
+                  "charOffset": 5061,
+                  "charLength": 12,
+                  "snippet": {
+                    "text": "strlen(data)",
+                    "rendered": {
+                      "text": "strlen(data)",
+                      "markdown": "`strlen(data)`"
+                    }
+                  },
+                  "sourceLanguage": "c"
+                }
+              }
+            }
+          ],
+          "fixes": [
+            {
+              "description": {
+                "text": "If a string is missing a null terminator, strlen will read past the end of the buffer"
+              },
+              "artifactChanges": [
+                {
+                  "artifactLocation": {
+                    "uri": "tools/mi300_tool.c"
+                  },
+                  "replacements": [
+                    {
+                      "deletedRegion": {
+                        "charOffset": 5061,
+                        "charLength": 12
+                      },
+                      "insertedContent": {
+                        "text": "strlen_s(data, <size of data>)"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "description": {
+                "text": "If a string is missing a null terminator, strlen will read past the end of the buffer"
+              },
+              "artifactChanges": [
+                {
+                  "artifactLocation": {
+                    "uri": "tools/mi300_tool.c"
+                  },
+                  "replacements": [
+                    {
+                      "deletedRegion": {
+                        "charOffset": 5061,
+                        "charLength": 12
+                      },
+                      "insertedContent": {
+                        "text": "strnlen(data, <size of data>)"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "DevSkimSeverity": "BestPractice",
+            "DevSkimConfidence": "High",
+            "tags": [
+              "API.DangerousAPI.ProblematicFunction"
+            ]
+          }
+        }
+      ],
+      "newlineSequences": [
+        "\r\n",
+        "\n"
+      ]
+    }
+  ]
+}
